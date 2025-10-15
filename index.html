@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>NextGen Deals</title>
+  <title>Campus Buys</title>
   <link rel="icon" type="image/png" href="NG.png">
   <style>
     /* === General Page Setup === */
@@ -199,7 +199,7 @@
     <div class="left-glow"></div>
   </div>
 
-  <h1>NEXTGENDEALS</h1>
+  <h1>CAMPUS BUYS</h1>
 
   <button onclick="openShop()">Open Shop</button>
 
@@ -208,17 +208,18 @@
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
       if (/android/i.test(userAgent)) {
-        window.location.href = "intent://nextgendeals1.netlify.app/products.html/#Intent;scheme=https;package=com.android.chrome;end";
+        window.location.href = "intent://campusbuys.netlify.app/products.html/#Intent;scheme=https;package=com.android.chrome;end";
       } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.location.href = "https://nextgendeals1.netlify.app/products.html";
+        window.location.href = "https://campusbuys.netlify.app/products.html";
       } else {
-        window.location.href = "https://nextgendeals1.netlify.app/products.html";
+        window.location.href = "https://campusbuys.netlify.app/products.html";
       }
     }
   </script>
 
 </body>
 </html>
+
 
 
 
