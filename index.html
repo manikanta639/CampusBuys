@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Disable all zooming (pinch + double tap) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Shop Hub</title>
   <style>
     body {
@@ -17,6 +18,7 @@
       font-family: 'Poppins', sans-serif;
       color: #fff;
       box-sizing: border-box;
+      touch-action: manipulation; /* Prevents double-tap zoom on mobile */
     }
 
     h1 {
@@ -29,7 +31,7 @@
 
     .row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* always 3 columns */
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       width: 100%;
       max-width: 1200px;
@@ -60,15 +62,9 @@
     }
 
     @keyframes glow {
-      0% {
-        box-shadow: 0 0 3px #00e6e6;
-      }
-      50% {
-        box-shadow: 0 0 20px #00e6e6;
-      }
-      100% {
-        box-shadow: 0 0 3px #00e6e6;
-      }
+      0% { box-shadow: 0 0 3px #00e6e6; }
+      50% { box-shadow: 0 0 20px #00e6e6; }
+      100% { box-shadow: 0 0 3px #00e6e6; }
     }
 
     .brand img {
@@ -106,62 +102,29 @@
 
     /* Responsive brand image sizes */
     @media (max-width: 1440px) {
-      .brand img {
-        width: 90px;
-        height: 90px;
-      }
-      .brand p {
-        font-size: 1.15rem;
-      }
-      .brand {
-        padding: 25px;
-      }
+      .brand img { width: 90px; height: 90px; }
+      .brand p { font-size: 1.15rem; }
+      .brand { padding: 25px; }
     }
 
     @media (max-width: 1024px) {
-      .brand img {
-        width: 85px;
-        height: 85px;
-      }
-      .brand p {
-        font-size: 1.1rem;
-      }
-      .brand {
-        padding: 25px;
-      }
+      .brand img { width: 85px; height: 85px; }
+      .brand p { font-size: 1.1rem; }
+      .brand { padding: 25px; }
     }
 
     @media (max-width: 768px) {
-      .row { gap: 12px; 
-        margin: 0 auto; 
-        padding-top: 15px; /* smaller bottom padding on mobile */
-      }
-      .brand img {
-        width: 75px;
-        height: 75px;
-      }
-      .brand p {
-        font-size: 1rem;
-      }
-      .brand {
-        padding: 20px;
-      }
+      .row { gap: 12px; margin: 0 auto; padding-top: 15px; }
+      .brand img { width: 75px; height: 75px; }
+      .brand p { font-size: 1rem; }
+      .brand { padding: 20px; }
     }
 
     @media (max-width: 480px) {
-    .brand img { 
-      width: 75px; 
-      height: 75px; 
-      } 
-    .brand p { 
-      font-size: 1rem; 
-      } 
-    .brand { 
-      padding: 20px; 
-      } 
-      .row { 
-  gap: 10px; 
-      }
+      .brand img { width: 75px; height: 75px; }
+      .brand p { font-size: 1rem; }
+      .brand { padding: 20px; }
+      .row { gap: 10px; }
     }
   </style>
 </head>
@@ -198,10 +161,7 @@
       <p>Ajio</p>
     </a>
     <a class="brand" href="https://www.shopsy.in" target="_blank" rel="noopener noreferrer">
-      <img
-        src="https://play-lh.googleusercontent.com/uGrNBxGla5F9jv0VDAwGZUleaH3C54eaIDY5MaSiChKxseMIvPxlQ7ivm0OEzo9lxxw=w240-h480-rw"
-        alt="Shopsy"
-      />
+      <img src="https://play-lh.googleusercontent.com/uGrNBxGla5F9jv0VDAwGZUleaH3C54eaIDY5MaSiChKxseMIvPxlQ7ivm0OEzo9lxxw=w240-h480-rw" alt="Shopsy" />
       <p>Shopsy</p>
     </a>
   </div>
@@ -233,7 +193,8 @@
       if (isInstagram) {
         window.location.href = targetURL;
       } else if (isAndroid) {
-        window.location.href = "intent://campusbuys.netlify.app/products.html/#Intent;scheme=https;package=com.android.chrome;end";
+        window.location.href =
+          "intent://campusbuys.netlify.app/products.html/#Intent;scheme=https;package=com.android.chrome;end";
       } else if (isIOS) {
         window.location.href = targetURL;
         setTimeout(() => {
@@ -250,15 +211,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
