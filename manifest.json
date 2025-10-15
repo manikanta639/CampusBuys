@@ -1,6 +1,6 @@
 {
-  "name": "Shop Hub",
-  "short_name": "ShopHub",
+  "name": "Campus Buys",
+  "short_name": "Campus Buys",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f0f1a",
@@ -19,3 +19,4 @@
     }
   ]
 }
+
