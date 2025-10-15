@@ -1,345 +1,253 @@
-/* =====================
-   BASE STYLES
-   ===================== */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: black;
-    text-align: center;
-    color: white;
-    animation: fadeIn 1s ease-in-out;
-    overflow-x: hidden; /* ✅ Prevent unwanted horizontal scroll */
-}
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop Hub</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      box-sizing: border-box;
+    }
 
-/* =====================
-   HEADER
-   ===================== */
-header {
-    padding: 15px;
-    background: black;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.logo {
-    width: 60px;
-    height: auto;
-    margin-bottom: 10px;
-}
-header h1 {
-    margin: 5px 0;
-    font-size: 22px;
-}
+    h1 {
+      margin: 20px 0;
+      color: #00e6e6;
+      text-shadow: 0 0 15px #00e6e6;
+      text-align: center;
+      font-size: 2rem;
+    }
 
-/* =====================
-   BANNER
-   ===================== */
-.banner h4 {
-    margin: 0 0 10px;
-    font-weight: bold;
-}
-.cta-btn {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 30px;
-    background: #fbff4d;
-    color: black;
-    font-size: 1rem;
-    font-weight: 550;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.cta-btn:hover {
-    background: #e0e642;
-    transform: scale(1.1);
-}
+    .row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* always 3 columns */
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding-top: 15px;
+    }
 
-/* =====================
-   SEARCH BAR
-   ===================== */
-.search-container {
-    position: sticky;
-    top: 0;
-    background: black;
-    z-index: 1000;
-    padding: 10px;
-}
-#search {
-    width: 90%;
-    max-width: 500px;
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #555;
-    border-radius: 5px;
-    outline: none;
-    background: #111;
-    color: white;
-    transition: 0.3s;
-}
-#search:focus {
-    border-color: #d4da3c;
-    box-shadow: 0 0 7px 1px rgba(251,255,77,0.9);
-    transform: scale(1.02);
-}
-#search::placeholder {
-    color: #aaa;
-    font-style: italic;
-}
+    .brand {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      padding: 15px;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      text-decoration: none;
+    }
 
-/* =====================
-   CATEGORIES
-   ===================== */
-.categories {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 15px 0;
-    gap: 10px;
-    padding: 0 10px;
-    border: none;
-    box-shadow: none;
+    .brand:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.15);
+      animation: glow 1.5s infinite alternate;
+    }
 
-    /* ✅ Hide horizontal scrollbar line */
-    overflow-x: auto;
-    scrollbar-width: none;  /* Firefox */
-    -ms-overflow-style: none; /* IE & Edge */
-}
-.categories::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
-}
-.categories button {
-    padding: 8px 16px;
-    border: none;
-    outline: none;
-    border-radius: 20px;
-    background: #fbff4d;
-    color: black;
-    font-size: 14px;
-    font-weight: 550;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.categories button:hover {
-    background: #00ffe1;
-    transform: scale(1.05);
-}
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 3px #00e6e6;
+      }
+      50% {
+        box-shadow: 0 0 20px #00e6e6;
+      }
+      100% {
+        box-shadow: 0 0 3px #00e6e6;
+      }
+    }
 
-/* =====================
-   SUBCATEGORIES
-   ===================== */
-#subcategory-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 15px 0;
-    gap: 8px;
-    padding: 0 10px;
+    .brand img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      object-fit: contain;
+    }
 
-    /* ✅ Hide horizontal scrollbar line */
-    overflow-x: auto;
-    scrollbar-width: none;  /* Firefox */
-    -ms-overflow-style: none; /* IE & Edge */
-}
-#subcategory-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
-}
-#subcategory-container button {
-    padding: 6px 14px;
-    border: none;
-    border-radius: 15px;
-    background: linear-gradient(135deg, #fff176, #ffd54f);
-    color: black;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-#subcategory-container button:hover {
-    transform: scale(1.1) translateY(-3px);
-    box-shadow: 0 6px 12px rgba(255, 213, 79, 0.4);
-}
+    .brand p {
+      font-size: 1.2rem;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+    }
 
-/* =====================
-   PRODUCTS GRID
-   ===================== */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 10px;
-    max-width: 1450px;
-    margin: auto;
-}
-.card {
-    background: #222;
-    border-radius: 12px;
-    padding: 10px;
-    text-align: center;
-    color: white;
-    position: relative;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 15px rgba(255,255,255,0.2);
-}
-/*.card img {
-    width: 100%;
-    height: 250px;
-    object-fit: contain;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    background: #222;
-    display: block;
-}*/
-/* =====================
-   CARD IMAGE - DESKTOP + MOBILE
-   ===================== */
-.card img {
-    width: 100%;                      /* fill card width */
-    height: 300px;                     /* desktop height */
-    object-fit: cover;                 /* crop to fill container */
-    object-position: center;              /* show face + hands */
-    border-radius: 8px; /* top-left, top-right, bottom-right, bottom-left */
-    margin-bottom: 10px;
-    display: block;
-    background: transparent;           /* remove dark background */
+    .shop-now {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: white;
+      padding: 15px 40px;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 0 20px #0072ff;
+      transition: all 0.3s ease;
+      margin: 25px 0;
+    }
 
-}
+    .shop-now:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #00c6ff;
+    }
 
-/* =====================
-   MOBILE RESPONSIVE IMAGES + DESKTOP
-   ===================== */
+    /* Responsive brand image sizes */
     @media (max-width: 1440px) {
-    .card img {
-        height: 280px; /* slightly smaller for smaller desktops/laptops */
+      .brand img {
+        width: 90px;
+        height: 90px;
+      }
+      .brand p {
+        font-size: 1.15rem;
+      }
+      .brand {
+        padding: 25px;
+      }
     }
-}
-   @media (max-width: 1024px) {
-    .card img {
-        height: 250px;                 /* slightly smaller for medium screens */
+
+    @media (max-width: 1024px) {
+      .brand img {
+        width: 85px;
+        height: 85px;
+      }
+      .brand p {
+        font-size: 1.1rem;
+      }
+      .brand {
+        padding: 25px;
+      }
     }
-}
 
-@media (max-width: 768px) {
-    .card img {
-        height: 200px;                 /* mobile-friendly height */
+    @media (max-width: 768px) {
+        .row {
+    gap: 12px;
+    margin: 0 auto;
+    padding-top: 16px;  /* smaller bottom padding on mobile */
+  }
+      .brand img {
+        width: 75px;
+        height: 75px;
+      }
+      .brand p {
+        font-size: 1rem;
+      }
+      .brand {
+        padding: 20px;
+      }
     }
-}
 
-@media (max-width: 480px) {
-    .card img {
-        height: 180px;                 /* small mobile screens */
+    @media (max-width: 480px) {
+      .brand img {
+        width: 65px;
+        height: 65px;
+      }
+      .brand p {
+        font-size: 0.9rem;
+      }
+      .brand {
+        padding: 12px;
+      }
+      .row {
+        gap: 10px;
+      }
     }
-}
+  </style>
+</head>
+<body>
+  <h1>All Your Favorite Stores</h1>
 
-.product-number {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: #fbff4d;
-    color: black;
-    font-weight: 550;
-    padding: 3px 7px;
-    border-radius: 6px;
-    font-size: 6px;
-}
-.product-name {
-    margin-top: 8px;
-    font-size: 14px;
-    font-weight: bold;
-}
+  <!-- Shop Now Button -->
+  <button class="shop-now" onclick="openShop()">Shop Now</button>
 
-/* =====================
-   BUY NOW BUTTON
-   ===================== */
-.buy-btn {
-    margin-top: -6px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    background: #fbff4d;
-    color: black;
-    font-weight: 550;
-    font-size: 14px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.buy-btn:hover {
-    background: #e0e642;
-    transform: scale(1.05);
-}
+  <!-- First Row -->
+  <div class="row">
+    <a class="brand" href="https://amzn.to/your-affiliate" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/1200x/0a/3e/48/0a3e4885efe5567709c6fcb84f60efd9.jpg" alt="Amazon" />
+      <p>Amazon</p>
+    </a>
+    <a class="brand" href="https://www.flipkart.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/736x/22/27/26/222726afe9934f7861715a8087f344a0.jpg" alt="Flipkart" />
+      <p>Flipkart</p>
+    </a>
+    <a class="brand" href="https://www.myntra.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/736x/75/7e/9f/757e9f8de60e9f3040f2dfbda529813e.jpg" alt="Myntra" />
+      <p>Myntra</p>
+    </a>
+  </div>
 
-/* =====================
-   RESPONSIVE GRID
-   ===================== */
+  <!-- Second Row -->
+  <div class="row">
+    <a class="brand" href="https://www.meesho.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/736x/73/4b/75/734b753bf391e8069a36ff185670e2c6.jpg" alt="Meesho" />
+      <p>Meesho</p>
+    </a>
+    <a class="brand" href="https://www.ajio.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/736x/df/b0/d9/dfb0d95efaa0be188f2fc6bc3b609c55.jpg" alt="Ajio" />
+      <p>Ajio</p>
+    </a>
+    <a class="brand" href="https://www.shopsy.in" target="_blank" rel="noopener noreferrer">
+      <img
+        src="https://play-lh.googleusercontent.com/uGrNBxGla5F9jv0VDAwGZUleaH3C54eaIDY5MaSiChKxseMIvPxlQ7ivm0OEzo9lxxw=w240-h480-rw"
+        alt="Shopsy"
+      />
+      <p>Shopsy</p>
+    </a>
+  </div>
 
-/* Desktop / Laptop: 4 per row */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    padding: 10px;
-    max-width: 1450px;
-    
-    margin: auto;
-}
+  <!-- Third Row -->
+  <div class="row">
+    <a class="brand" href="https://www.croma.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/1200x/0f/1f/22/0f1f228244b8789fc09c0a9969ce9780.jpg" alt="Croma" />
+      <p>Croma</p>
+    </a>
+    <a class="brand" href="https://www.reliancedigital.in" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/1200x/39/c1/99/39c199e243173ff0a2daf8f9dc2c89b6.jpg" alt="Reliance Digital" />
+      <p>Reliance</p>
+    </a>
+    <div class="brand" onclick="othersClicked()">
+      <img src="https://i.pinimg.com/736x/3d/1e/e9/3d1ee975e59ef6bfc50d86dbdb512c28.jpg" alt="Others" />
+      <p>Others</p>
+    </div>
+  </div>
 
-/* Medium screens: tablets, 3 per row */
-@media (max-width: 1024px) {
-    .product-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
+  <script>
+    function openShop() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isInstagram = userAgent.includes("Instagram");
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+      const targetURL = "https://campusbuys.netlify.app/products.html";
+
+      if (isInstagram) {
+        window.location.href = targetURL;
+      } else if (isAndroid) {
+        window.location.href = "intent://campusbuys.netlify.app/products.html/#Intent;scheme=https;package=com.android.chrome;end";
+      } else if (isIOS) {
+        window.location.href = targetURL;
+        setTimeout(() => {
+          window.location.href = targetURL;
+        }, 1000);
+      } else {
+        window.location.href = targetURL;
+      }
     }
-}
 
-/* Small tablets / large phones: 2 per row */
-@media (max-width: 768px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+    function othersClicked() {
+      alert("Please message us on Instagram to open Shop Now");
     }
-    .card img {
-        height: 180px;  /* mobile-friendly image height */
-    }
-}
-
-/* Small phones: 2 per row */
-@media (max-width: 480px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-    }
-    .card img {
-        height: 150px;
-    }
-}
-
-
-/* =====================
-   MOBILE SCROLL FIX
-   ===================== */
-@media (max-width: 768px) {
-    .categories, #subcategory-container {
-        flex-wrap: nowrap;                /* ✅ Force one line */
-        overflow-x: auto;                 /* ✅ Enable horizontal scroll */
-        -webkit-overflow-scrolling: touch;/* ✅ Smooth scrolling on iOS */
-        justify-content: flex-start;
-    }
-    .categories button, #subcategory-container button {
-        flex: 0 0 auto; /* ✅ Prevent shrinking */
-    }
-}
-
-
-
-
-
-
-
+  </script>
+</body>
+</html>
