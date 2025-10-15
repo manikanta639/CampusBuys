@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=430, user-scalable=no" />
   <title>Shop Hub</title>
   <style>
+    /* ==== BASE STYLING ==== */
     body {
       margin: 0;
       padding: 20px;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -17,6 +18,7 @@
       font-family: 'Poppins', sans-serif;
       color: #fff;
       box-sizing: border-box;
+      overflow-x: hidden;
     }
 
     h1 {
@@ -24,184 +26,141 @@
       color: #00e6e6;
       text-shadow: 0 0 15px #00e6e6;
       text-align: center;
-      font-size: 2rem;
+      font-size: 32px;
+      letter-spacing: 1px;
     }
 
+    /* ==== SHOP NOW BUTTON ==== */
+    .shop-now {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: white;
+      padding: 16px 50px;
+      font-size: 22px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(0, 114, 255, 0.8);
+      transition: all 0.3s ease;
+      margin: 25px 0;
+    }
+
+    .shop-now:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(0, 198, 255, 1);
+    }
+
+    /* ==== GRID ==== */
     .row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* always 3 per row */
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
       width: 100%;
-      max-width: 1200px; /* max width for large screens */
-      margin: 20px auto;
+      max-width: 420px;
+      margin: 15px auto;
+      padding-top: 10px;
+      justify-items: center;
     }
 
+    /* ==== BRAND BOX ==== */
     .brand {
-      background: rgba(255, 255, 255, 0.05);
+      width: 115px;
+      height: 125px;
+      background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 15px;
+      border-radius: 18px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      padding: 15px;
       transition: all 0.4s ease;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
       text-decoration: none;
     }
 
     .brand:hover {
-      transform: translateY(-8px) scale(1.05);
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
       background: rgba(255, 255, 255, 0.15);
-      animation: glow 1.5s infinite alternate;
-    }
-
-    @keyframes glow {
-      0% { box-shadow: 0 0 3px #00e6e6; }
-      50% { box-shadow: 0 0 20px #00e6e6; }
-      100% { box-shadow: 0 0 3px #00e6e6; }
     }
 
     .brand img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 10px;
-      border-radius: 10px;
+      width: 65px;
+      height: 65px;
+      margin-bottom: 8px;
+      border-radius: 12px;
       object-fit: contain;
     }
 
     .brand p {
-      font-size: 1rem;
+      font-size: 15px;
       color: #fff;
       text-align: center;
       margin: 0;
     }
 
-    .shop-now {
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      color: white;
-      padding: 15px 40px;
-      font-size: 1.4rem;
-      border: none;
-      border-radius: 40px;
-      cursor: pointer;
-      box-shadow: 0 0 20px #0072ff;
-      transition: all 0.3s ease;
-      margin: 25px 0;
-    }
-
-    .shop-now:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #00c6ff;
-    }
-
-    /* Laptop/Desktop: largest size */
-    @media (min-width: 1025px) {
-      .brand {
-        padding: 30px;
-      }
-      .brand img {
-        width: 100px;
-        height: 100px;
-      }
-      .brand p {
-        font-size: 1.2rem;
-      }
-    }
-
-    /* Tablet */
-    @media (max-width: 1024px) {
-      .brand {
-        padding: 25px;
-      }
-      .brand img {
-        width: 85px;
-        height: 85px;
-      }
-      .brand p {
-        font-size: 1.1rem;
-      }
-    }
-
-    /* Mobile */
-      .row {
-    gap: 10px;
-    margin: 0 auto;
-    padding-top: 15px;  /* smaller bottom padding on mobile */
-  }
-    @media (max-width: 600px) {
-      .brand {
-        padding: 12px;
-      }
-      .brand img {
-        width: 70px;
-        height: 70px;
-      }
-      .brand p {
-        font-size: 0.9rem;
+    /* ==== DISABLE RESPONSIVE CHANGES ==== */
+    @media (max-width: 430px) {
+      html, body {
+        zoom: 1; /* prevent shrinking */
       }
     }
   </style>
 </head>
 <body>
-
   <h1>All Your Favorite Stores</h1>
 
-  <!-- Shop Now Button -->
   <button class="shop-now" onclick="openShop()">Shop Now</button>
 
   <!-- First Row -->
   <div class="row">
-    <a class="brand" href="https://amzn.to/your-affiliate" target="_blank">
-      <img src="https://i.pinimg.com/1200x/0a/3e/48/0a3e4885efe5567709c6fcb84f60efd9.jpg" alt="Amazon">
+    <a class="brand" href="https://amzn.to/your-affiliate" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/1200x/0a/3e/48/0a3e4885efe5567709c6fcb84f60efd9.jpg" alt="Amazon" />
       <p>Amazon</p>
     </a>
-    <a class="brand" href="https://www.flipkart.com" target="_blank">
-      <img src="https://i.pinimg.com/736x/22/27/26/222726afe9934f7861715a8087f344a0.jpg" alt="Flipkart">
+    <a class="brand" href="https://www.flipkart.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/736x/22/27/26/222726afe9934f7861715a8087f344a0.jpg" alt="Flipkart" />
       <p>Flipkart</p>
     </a>
-    <a class="brand" href="https://www.myntra.com" target="_blank">
-      <img src="https://i.pinimg.com/736x/75/7e/9f/757e9f8de60e9f3040f2dfbda529813e.jpg" alt="Myntra">
+    <a class="brand" href="https://www.myntra.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/736x/75/7e/9f/757e9f8de60e9f3040f2dfbda529813e.jpg" alt="Myntra" />
       <p>Myntra</p>
     </a>
   </div>
 
   <!-- Second Row -->
   <div class="row">
-    <a class="brand" href="https://www.meesho.com" target="_blank">
-      <img src="https://i.pinimg.com/736x/73/4b/75/734b753bf391e8069a36ff185670e2c6.jpg" alt="Meesho">
+    <a class="brand" href="https://www.meesho.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/736x/73/4b/75/734b753bf391e8069a36ff185670e2c6.jpg" alt="Meesho" />
       <p>Meesho</p>
     </a>
-    <a class="brand" href="https://www.ajio.com" target="_blank">
-      <img src="https://i.pinimg.com/736x/df/b0/d9/dfb0d95efaa0be188f2fc6bc3b609c55.jpg" alt="Ajio">
+    <a class="brand" href="https://www.ajio.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/736x/df/b0/d9/dfb0d95efaa0be188f2fc6bc3b609c55.jpg" alt="Ajio" />
       <p>Ajio</p>
     </a>
-    <a class="brand" href="https://www.shopsy.in" target="_blank">
-      <img src="https://play-lh.googleusercontent.com/uGrNBxGla5F9jv0VDAwGZUleaH3C54eaIDY5MaSiChKxseMIvPxlQ7ivm0OEzo9lxxw=w240-h480-rw" alt="Shopsy">
+    <a class="brand" href="https://www.shopsy.in" target="_blank" rel="noopener noreferrer">
+      <img src="https://play-lh.googleusercontent.com/uGrNBxGla5F9jv0VDAwGZUleaH3C54eaIDY5MaSiChKxseMIvPxlQ7ivm0OEzo9lxxw=w240-h480-rw" alt="Shopsy" />
       <p>Shopsy</p>
     </a>
   </div>
 
   <!-- Third Row -->
   <div class="row">
-    <a class="brand" href="https://www.croma.com" target="_blank">
-      <img src="https://i.pinimg.com/1200x/0f/1f/22/0f1f228244b8789fc09c0a9969ce9780.jpg" alt="Croma">
+    <a class="brand" href="https://www.croma.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/1200x/0f/1f/22/0f1f228244b8789fc09c0a9969ce9780.jpg" alt="Croma" />
       <p>Croma</p>
     </a>
-    <a class="brand" href="https://www.reliancedigital.in" target="_blank">
-      <img src="https://i.pinimg.com/1200x/39/c1/99/39c199e243173ff0a2daf8f9dc2c89b6.jpg" alt="Reliance Digital">
+    <a class="brand" href="https://www.reliancedigital.in" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.pinimg.com/1200x/39/c1/99/39c199e243173ff0a2daf8f9dc2c89b6.jpg" alt="Reliance Digital" />
       <p>Reliance</p>
     </a>
     <div class="brand" onclick="othersClicked()">
-      <img src="https://i.pinimg.com/736x/3d/1e/e9/3d1ee975e59ef6bfc50d86dbdb512c28.jpg" alt="Others">
+      <img src="https://i.pinimg.com/736x/3d/1e/e9/3d1ee975e59ef6bfc50d86dbdb512c28.jpg" alt="Others" />
       <p>Others</p>
     </div>
   </div>
 
   <script>
-    // Shop Now button with deep links
     function openShop() {
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
       const isInstagram = userAgent.includes("Instagram");
@@ -210,29 +169,22 @@
       const targetURL = "https://campusbuys.netlify.app/products.html";
 
       if (isInstagram) {
-        // Instagram in-app browser → open directly
         window.location.href = targetURL;
       } else if (isAndroid) {
-        // Android deep link
         window.location.href = "intent://campusbuys.netlify.app/products.html/#Intent;scheme=https;package=com.android.chrome;end";
       } else if (isIOS) {
-        // iPhone / iPad deep link
-        window.location.href = targetURL; 
-        setTimeout(() => { window.location.href = targetURL; }, 1000);
+        window.location.href = targetURL;
+        setTimeout(() => {
+          window.location.href = targetURL;
+        }, 1000);
       } else {
-        // Desktop
         window.location.href = targetURL;
       }
     }
 
-    // Others button click
     function othersClicked() {
       alert("Please message us on Instagram to open Shop Now");
     }
   </script>
-
 </body>
 </html>
-
-
-
