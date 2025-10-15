@@ -126,18 +126,28 @@
     }
 
     /* Mobile */
-    @media (max-width: 600px) {
-      .brand {
-        padding: 15px;
-      }
-      .brand img {
-        width: 70px;
-        height: 70px;
-      }
-      .brand p {
-        font-size: 0.9rem;
-      }
-    }
+  @media (max-width: 600px) {
+  .row {
+    grid-template-columns: repeat(3, 1fr); /* still 3 per row */
+    gap: 10px;
+    width: 100%;
+    max-width: 360px;   /* decrease total width for mobile */
+    margin: 0 auto;     /* center horizontally */
+  }
+
+  .brand {
+    padding: 12px;
+  }
+
+  .brand img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .brand p {
+    font-size: 0.85rem;
+  }
+  }
   </style>
 </head>
 <body>
@@ -228,3 +238,4 @@
 
 </body>
 </html>
+
