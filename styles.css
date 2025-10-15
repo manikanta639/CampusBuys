@@ -27,26 +27,47 @@
       font-size: 2rem;
     }
 
+    .shop-now {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: white;
+      padding: 15px 40px;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(0, 114, 255, 0.8);
+      transition: all 0.3s ease;
+      margin: 25px 0;
+    }
+
+    .shop-now:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 35px rgba(0, 198, 255, 1);
+    }
+
     .row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* always 3 columns */
-      gap: 20px;
+      grid-template-columns: repeat(3, minmax(0, 1fr)); /* Always 3 columns */
+      gap: 18px;
       width: 100%;
-      max-width: 1200px;
+      max-width: 900px;
       margin: 20px auto;
-      padding-top: 15px;
+      padding-top: 10px;
+      justify-items: center;
     }
 
     .brand {
-      background: rgba(255, 255, 255, 0.05);
+      width: 100%;
+      max-width: 150px;
+      background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 15px;
+      border-radius: 18px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
       padding: 15px;
+      cursor: pointer;
       transition: all 0.4s ease;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
       text-decoration: none;
@@ -60,108 +81,50 @@
     }
 
     @keyframes glow {
-      0% {
-        box-shadow: 0 0 3px #00e6e6;
-      }
-      50% {
-        box-shadow: 0 0 20px #00e6e6;
-      }
-      100% {
-        box-shadow: 0 0 3px #00e6e6;
-      }
+      0% { box-shadow: 0 0 3px #00e6e6; }
+      50% { box-shadow: 0 0 20px #00e6e6; }
+      100% { box-shadow: 0 0 3px #00e6e6; }
     }
 
     .brand img {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       margin-bottom: 10px;
-      border-radius: 10px;
+      border-radius: 12px;
       object-fit: contain;
     }
 
     .brand p {
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: #fff;
       text-align: center;
       margin: 0;
     }
 
-    .shop-now {
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      color: white;
-      padding: 15px 40px;
-      font-size: 1.4rem;
-      border: none;
-      border-radius: 40px;
-      cursor: pointer;
-      box-shadow: 0 0 20px #0072ff;
-      transition: all 0.3s ease;
-      margin: 25px 0;
-    }
-
-    .shop-now:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #00c6ff;
-    }
-
-    /* Responsive brand image sizes */
-    @media (max-width: 1440px) {
-      .brand img {
-        width: 90px;
-        height: 90px;
-      }
-      .brand p {
-        font-size: 1.15rem;
-      }
-      .brand {
-        padding: 25px;
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .brand img {
-        width: 85px;
-        height: 85px;
-      }
-      .brand p {
-        font-size: 1.1rem;
-      }
-      .brand {
-        padding: 25px;
-      }
-    }
-
-    @media (max-width: 768px) {
-        .row {
-    gap: 12px;
-    margin: 0 auto;
-    padding-top: 16px;  /* smaller bottom padding on mobile */
-  }
-      .brand img {
-        width: 75px;
-        height: 75px;
-      }
-      .brand p {
-        font-size: 1rem;
-      }
-      .brand {
-        padding: 20px;
-      }
-    }
-
+    /* Keep 3 columns on small screens */
     @media (max-width: 480px) {
-      .brand img {
-        width: 65px;
-        height: 65px;
-      }
-      .brand p {
-        font-size: 0.9rem;
-      }
-      .brand {
-        padding: 12px;
-      }
       .row {
+        grid-template-columns: repeat(3, 1fr);
         gap: 10px;
+      }
+
+      .brand img {
+        width: 70px;
+        height: 70px;
+      }
+
+      .brand {
+        max-width: 120px;
+        padding: 10px;
+      }
+
+      .shop-now {
+        font-size: 1.2rem;
+        padding: 12px 35px;
+      }
+
+      h1 {
+        font-size: 1.7rem;
       }
     }
   </style>
@@ -169,7 +132,6 @@
 <body>
   <h1>All Your Favorite Stores</h1>
 
-  <!-- Shop Now Button -->
   <button class="shop-now" onclick="openShop()">Shop Now</button>
 
   <!-- First Row -->
@@ -199,10 +161,7 @@
       <p>Ajio</p>
     </a>
     <a class="brand" href="https://www.shopsy.in" target="_blank" rel="noopener noreferrer">
-      <img
-        src="https://play-lh.googleusercontent.com/uGrNBxGla5F9jv0VDAwGZUleaH3C54eaIDY5MaSiChKxseMIvPxlQ7ivm0OEzo9lxxw=w240-h480-rw"
-        alt="Shopsy"
-      />
+      <img src="https://play-lh.googleusercontent.com/uGrNBxGla5F9jv0VDAwGZUleaH3C54eaIDY5MaSiChKxseMIvPxlQ7ivm0OEzo9lxxw=w240-h480-rw" alt="Shopsy" />
       <p>Shopsy</p>
     </a>
   </div>
@@ -251,6 +210,3 @@
   </script>
 </body>
 </html>
-
-
-
