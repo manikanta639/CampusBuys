@@ -2,152 +2,233 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Campus Buys</title>
+  <link rel="icon" type="image/png" href="EK.jpeg">
   <style>
+    /* === General Page Setup === */
     body {
       margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
-      font-family: 'Poppins', sans-serif;
+      background: #000;
       color: #fff;
-    }
-
-    h1 {
-      margin-bottom: 40px;
-      color: #00e6e6;
-      text-shadow: 0 0 15px #00e6e6;
-      text-align: center;
-    }
-
-    .row {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin: 20px 0;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      width: 150px;
-      height: 150px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      height: 90vh;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
     }
 
-    .brand:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
-      background: rgba(255, 255, 255, 0.15);
-      animation: glow 1.5s infinite alternate;
+    /* === CYBER PLASMA BACKGROUND EFFECT === 
+    body::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 180deg at 50% 50%, #cc0000, #00cc00, #cc0000);
+      filter: blur(180px);
+      animation: plasmaSpin 15s linear infinite;
+      z-index: 0;
+      opacity: 0.9;
     }
 
-    @keyframes glow {
-      0% { box-shadow: 0 0 5px #00e6e6; }
-      50% { box-shadow: 0 0 25px #00e6e6; }
-      100% { box-shadow: 0 0 5px #00e6e6; }
+    @keyframes plasmaSpin {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1); }
+      100% { transform: rotate(360deg) scale(1); }
+    }*/
+
+    /* === Neon Logo Box === */
+    .logo-box {
+      position: relative;
+      display: inline-block;
+      border-radius: 15px;
+      padding: 1px;
+      z-index: 1;
     }
 
-    .brand img {
-      width: 70px;
-      height: 70px;
-      margin-bottom: 10px;
+    /* Top (green) */
+    .logo-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #fbff4d;
+      box-shadow: 0 0 10px #fbff4d, 0 0 20px #fbff4d;
+      border-radius: 15px 15px 0 0;
+    }
+
+    /* Right (red) */
+    .logo-box::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4px;
+      height: 100%;
+      background: #fbff4d;
+      box-shadow: 0 0 10px #fbff4d, 0 0 20px #fbff4d;
+      border-radius: 0 15px 15px 0;
+    }
+
+    /* Bottom (green) */
+    .bottom-glow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #fbff4d;
+      box-shadow: 0 0 10px #fbff4d, 0 0 20px #fbff4d;
+      border-radius: 0 0 15px 15px;
+    }
+
+    /* Left (red) */
+    .left-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: #fbff4d;
+      box-shadow: 0 0 10px #fbff4d, 0 0 20px #fbff4d;
+      border-radius: 15px 0 0 15px;
+    }
+
+    /* === Logo Image === */
+    img.logo {
+      width: 250px;
       border-radius: 10px;
+      display: block;
     }
 
-    .brand p {
-      font-size: 1rem;
-      color: #fff;
-      text-align: center;
+    /* === Title === */
+    h1 {
+      margin: 50px 0 30px 0;
+      font-size: 50px;
+      color: #ffffff;
+      text-shadow: 0 0 8px white;
+      z-index: 1;
     }
 
-    .shop-now {
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      color: white;
-      padding: 25px 60px;
-      font-size: 2rem;
+    /* === Button Styling === */
+    button {
+      background: #fbff4d;
+      color: black;
       border: none;
-      border-radius: 50px;
+      font-size: 20px;
+      font-weight: 550;
+      padding: 15px 30px;
+      border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 0 20px #0072ff;
-      transition: all 0.3s ease;
+      transition: transform 0.2s, box-shadow 0.2s;
+      z-index: 1;
     }
 
-    .shop-now:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 40px #00c6ff;
+    button:hover {
+      background: #00ffe1;
+      box-shadow: 0 0 7px 1px rgba(251,255,77,0.9);
+      transform: scale(1.05);
+    }
+
+    /* === Footer Text === */
+    p {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #ccc;
+      z-index: 1;
+    }
+
+    /* === Mobile & Tablet Responsive Adjustments === */
+    @media (max-width: 768px) {
+      body {
+        font-size: 14px;
+        padding: 0;
+        height: 90vh;
+        overflow: hidden;
+      }
+
+      .logo-box {
+        padding: 0.5px;
+      }
+
+      img.logo {
+        width: 180px;
+      }
+
+      h1 {
+        font-size: 32px;
+        margin: 20px 0 20px 0;
+      }
+
+      button {
+        font-size: 22px;
+        padding: 12px 25px;
+      }
+
+      body::before {
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        filter: blur(120px);
+      }
+    }
+
+    /* Very small mobile devices */
+    @media (max-width: 480px) {
+      body::before {
+        filter: blur(100px);
+      }
     }
 
   </style>
 </head>
 <body>
 
-  <h1>All Your Favorite Stores</h1>
-
-  <!-- Top Row -->
-  <div class="row">
-    <a class="brand" href="https://amzn.to/your-affiliate" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
-      <p>Amazon</p>
-    </a>
-
-    <a class="brand" href="https://www.flipkart.com" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Flipkart_logo.png" alt="Flipkart">
-      <p>Flipkart</p>
-    </a>
-
-    <a class="brand" href="https://www.myntra.com" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Myntra_logo.png" alt="Myntra">
-      <p>Myntra</p>
-    </a>
+  <div class="logo-box">
+    <img src="EK.jpeg" alt="Logo" class="logo">
+    <div class="bottom-glow"></div>
+    <div class="left-glow"></div>
   </div>
 
-  <!-- Middle Button -->
-  <button class="shop-now" onclick="shopNowClicked()">Shop Now</button>
+  <h1>CAMPUS BUYS</h1>
 
-  <!-- Bottom Row -->
-  <div class="row">
-    <a class="brand" href="https://www.meesho.com" target="_blank">
-      <img src="https://play-lh.googleusercontent.com/EcCBv5MB0vYk5Kc9M6wBfCGWhFzUR0Fq28kAV_0ll4JZ5UfXEVbk3V1vRxUCDt3JgA=w240-h480-rw" alt="Meesho">
-      <p>Meesho</p>
-    </a>
-
-    <a class="brand" href="https://www.ajio.com" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Ajio_logo.png" alt="Ajio">
-      <p>Ajio</p>
-    </a>
-
-    <a class="brand" href="https://www.shopsy.in" target="_blank">
-      <img src="https://play-lh.googleusercontent.com/HI5J1PnM2kApvFVF39bZtDGrPw0L9LzhCS36emXkSP4JqvZKthCvhZ6jVN7AXP3R0g=w240-h480-rw" alt="Shopsy">
-      <p>Shopsy</p>
-    </a>
-  </div>
+  <button onclick="openShop()">Open Shop</button>
 
   <script>
-    function shopNow() {
-      const productName = encodeURIComponent("Product Name - ₹999"); // dynamically replace
-      const whatsappNumber = "9494660350"; // your WhatsApp number
-      const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hello! I want this product: ${productName}`;
-      window.open(whatsappLink, "_blank");
-    }
-    function shopNowClicked() {
-      // Button is intentionally empty, does nothing
-      console.log("Shop Now clicked!");
+    function openShop() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (/android/i.test(userAgent)) {
+        window.location.href = "intent://campusbuys.netlify.app/products.html/#Intent;scheme=https;package=com.android.chrome;end";
+      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href = "https://campusbuys.netlify.app/products.html";
+      } else {
+        window.location.href = "https://campusbuys.netlify.app/products.html";
+      }
     }
   </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
