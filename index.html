@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Disable all zooming (pinch + double tap) -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Shop Hub</title>
+
+  <!-- PWA manifest + theme color -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f0f1a" />
+  <link rel="icon" type="image/png" href="icon-192x192.png">
+
   <style>
     body {
       margin: 0;
@@ -100,7 +105,6 @@
       box-shadow: 0 0 20px #00c6ff;
     }
 
-    /* Responsive brand image sizes */
     @media (max-width: 1440px) {
       .brand img { width: 90px; height: 90px; }
       .brand p { font-size: 1.15rem; }
@@ -180,9 +184,9 @@
       <img src="https://animationvisarts.com/wp-content/uploads/2023/11/Frame-43.png" alt="Boat" />
       <p>Boat</p>
     </a>
-    </div>
-  <!-- Fourth Row -->
+  </div>
 
+  <!-- Fourth Row -->
   <div class="row">
     <a class="brand" href="https://www.ajio.com" target="_blank" rel="noopener noreferrer">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMCgb-2-GKZUFcLen8J9JkKrk-841xZ6ne0w&s" alt="Noise" />
@@ -224,11 +228,15 @@
     function othersClicked() {
       alert("Please message us on Instagram to open Shop Now");
     }
+
+    // Register service worker
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js")
+          .then(() => console.log("Service Worker registered successfully"))
+          .catch(err => console.log("Service Worker registration failed:", err));
+      });
+    }
   </script>
 </body>
 </html>
-
-
-
-
-
