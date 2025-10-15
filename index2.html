@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextGen Deals</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      background: black;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    #shopSection {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.6s ease-in-out;
+    }
+
+    .store {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background: white;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .store:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .store img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .store span {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .store button {
+      padding: 8px 14px;
+      background: #ffcc00; /* Yellow */
+      color: black;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .store button:hover {
+      background: #e6b800;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+
+
+  <!-- Stores Section -->
+  <div id="shopSection">
+
+    <div class="store"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf4KqUN3HJ9Ye15yF6ewn8uUnW0ZGA3lZgmuEX2z5bjYcvtUOSkuze5xHIczgdGOkICmw&usqp=CAU"><span>Amazon</span><button onclick="window.open('https://amzn.to/4nLAEnI')">Buy Now</button></div>
+    <div class="store"><img src="https://play-lh.googleusercontent.com/FA_rzaEeLlumm0qh68q3z5Pt-PGMVPf2Z28_pbega7SaXSiKjSzh-0MZceB3FpdvQIBq"><span>Flipkart</span><button onclick="window.open('https://fkrt.co/S9F5Nk')">Buy Now</button></div>
+    <div class="store"><img src="https://i.pinimg.com/736x/7c/2e/d6/7c2ed668416881d16615000622f6b0ad.jpg"><span>Meesho</span><button onclick="window.open('https://msho.in/eoaBgt')">Buy Now</button></div>
+    <div class="store"><img src="https://i.pinimg.com/1200x/fc/86/53/fc8653fb163765394864f84ad888fb87.jpg"><span>Myntra</span><button onclick="window.open('https://myntr.in/L79XM5')">Buy Now</button></div>
+    <div class="store"><img src="https://i.pinimg.com/736x/df/6b/f1/df6bf1e56460cc26f20b99f85af896ae.jpg"><span>Ajio</span><button onclick="window.open('https://ajiio.co/i4ZkUK')">Buy Now</button></div>
+    <div class="store"><img src="https://i.pinimg.com/1200x/ea/70/43/ea7043e8187e08fa44002b3b0bbb0b33.jpg"><span>OnePlus</span><button onclick="window.open('https://extp.in/Y4gt1Y')">Buy Now</button></div>
+    <div class="store"><img src="https://i.pinimg.com/1200x/05/0a/c9/050ac92cb432973286bbba0b3637f17c.jpg"><span>Samsung</span><button onclick="window.open('https://extp.in/cwD2DZ')">Buy Now</button></div>
+    <div class="store"><img src="https://i.pinimg.com/1200x/f4/02/8e/f4028e4462c4185d1942d4aff9f50d78.jpg"><span>Oppo</span><button onclick="window.open('https://extp.in/YS05lk')">Buy Now</button></div>
+    <div class="store"><img src="https://i.pinimg.com/1200x/04/c6/fc/04c6fc2256c49e4857402ae94111d7e8.jpg"><span>Realme</span><button onclick="window.open('https://extp.in/GBQImj')">Buy Now</button></div>
+<!--    <div class="store"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Lenskart_logo.png"><span>Lenskart</span><button onclick="window.open('https://www.lenskart.com','_blank')">Buy Now</button></div>
+    <div class="store"><img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg"><span>Dell</span><button onclick="window.open('https://www.dell.com/en-in','_blank')">Buy Now</button></div>
+    <div class="store"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Lenovo_logo_2015.svg"><span>Lenovo</span><button onclick="window.open('https://www.lenovo.com/in/en/','_blank')">Buy Now</button></div>
+    <div class="store"><img src="https://upload.wikimedia.org/wikipedia/commons/8/80/Noise_logo.png"><span>Noise</span><button onclick="window.open('https://www.gonoise.com','_blank')">Buy Now</button></div>
+    <div class="store"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Fastrack_logo.png"><span>Fastrack</span><button onclick="window.open('https://www.fastrack.in','_blank')">Buy Now</button></div>
+    <div class="store"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Puma_logo.svg"><span>Puma</span><button onclick="window.open('https://in.puma.com','_blank')">Buy Now</button></div>
+-->
+  </div>
+
+</body>
+</html>

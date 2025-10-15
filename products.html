@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image" href="NG.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen Deals</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Logo + Title -->
+    <header id="site-header">
+        <img src="NEXTGEN DEALS.png" alt="Logo" class="logo" style="border-radius: 10px;">
+        <h1>NG Deals</h1>
+    </header>
+
+    <!-- Shop Now Button -->
+    <div>
+        <a href="index2.html" target="_blank">
+            <button class="cta-btn">Shop Now</button>
+        </a>
+    </div>
+
+    <!-- Sticky Search Bar -->
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search by name or number..." oninput="filterProducts()">
+    </div>
+
+    <!-- ✅ Categories -->
+    <div class="categories">
+        <button onclick="filterByCategory('all')">All</button>
+        <button onclick="filterByCategory('electronics')">Electronics</button>
+        <button onclick="filterByCategory('footwear')">Footwear</button>
+        <button onclick="filterByCategory('clothing')">Clothing</button>
+        <button onclick="filterByCategory('skincare')">Skin Care</button>
+        <button onclick="filterByCategory('grocery')">Grocery</button>
+        <button onclick="filterByCategory('homeappliances')">Home Appliances</button>
+        <!--<button onclick="filterByCategory('proteins')">Proteins</button> -->
+        <button onclick="filterByCategory('Others')">Others</button>
+        
+
+        
+
+
+    </div>
+
+    <!-- Subcategories will appear here dynamically -->
+    <div id="subcategory-container"></div>
+
+    <!-- Products -->
+    <div id="product-container" class="product-grid"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+

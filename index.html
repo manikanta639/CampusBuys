@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NextGen Deals</title>
+  <link rel="icon" type="image/png" href="NG.png">
+  <style>
+    /* === General Page Setup === */
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* === CYBER PLASMA BACKGROUND EFFECT === 
+    body::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 180deg at 50% 50%, #cc0000, #00cc00, #cc0000);
+      filter: blur(180px);
+      animation: plasmaSpin 15s linear infinite;
+      z-index: 0;
+      opacity: 0.9;
+    }
+
+    @keyframes plasmaSpin {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1); }
+      100% { transform: rotate(360deg) scale(1); }
+    }*/
+
+    /* === Neon Logo Box === */
+    .logo-box {
+      position: relative;
+      display: inline-block;
+      border-radius: 15px;
+      padding: 1px;
+      z-index: 1;
+    }
+
+    /* Top (green) */
+    .logo-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #fbff4d;
+      box-shadow: 0 0 10px #fbff4d, 0 0 20px #fbff4d;
+      border-radius: 15px 15px 0 0;
+    }
+
+    /* Right (red) */
+    .logo-box::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4px;
+      height: 100%;
+      background: #fbff4d;
+      box-shadow: 0 0 10px #fbff4d, 0 0 20px #fbff4d;
+      border-radius: 0 15px 15px 0;
+    }
+
+    /* Bottom (green) */
+    .bottom-glow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #fbff4d;
+      box-shadow: 0 0 10px #fbff4d, 0 0 20px #fbff4d;
+      border-radius: 0 0 15px 15px;
+    }
+
+    /* Left (red) */
+    .left-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: #fbff4d;
+      box-shadow: 0 0 10px #fbff4d, 0 0 20px #fbff4d;
+      border-radius: 15px 0 0 15px;
+    }
+
+    /* === Logo Image === */
+    img.logo {
+      width: 250px;
+      border-radius: 10px;
+      display: block;
+    }
+
+    /* === Title === */
+    h1 {
+      margin: 50px 0 30px 0;
+      font-size: 50px;
+      color: #ffffff;
+      text-shadow: 0 0 8px white;
+      z-index: 1;
+    }
+
+    /* === Button Styling === */
+    button {
+      background: #fbff4d;
+      color: black;
+      border: none;
+      font-size: 20px;
+      font-weight: 550;
+      padding: 15px 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      z-index: 1;
+    }
+
+    button:hover {
+      background: #00ffe1;
+      box-shadow: 0 0 7px 1px rgba(251,255,77,0.9);
+      transform: scale(1.05);
+    }
+
+    /* === Footer Text === */
+    p {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #ccc;
+      z-index: 1;
+    }
+
+    /* === Mobile & Tablet Responsive Adjustments === */
+    @media (max-width: 768px) {
+      body {
+        font-size: 14px;
+        padding: 0;
+        height: 90vh;
+        overflow: hidden;
+      }
+
+      .logo-box {
+        padding: 0.5px;
+      }
+
+      img.logo {
+        width: 180px;
+      }
+
+      h1 {
+        font-size: 32px;
+        margin: 20px 0 20px 0;
+      }
+
+      button {
+        font-size: 22px;
+        padding: 12px 25px;
+      }
+
+      body::before {
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        filter: blur(120px);
+      }
+    }
+
+    /* Very small mobile devices */
+    @media (max-width: 480px) {
+      body::before {
+        filter: blur(100px);
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="logo-box">
+    <img src="NEXTGEN DEALS.png" alt="Logo" class="logo">
+    <div class="bottom-glow"></div>
+    <div class="left-glow"></div>
+  </div>
+
+  <h1>NEXTGENDEALS</h1>
+
+  <button onclick="openShop()">Open Shop</button>
+
+  <script>
+    function openShop() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (/android/i.test(userAgent)) {
+        window.location.href = "intent://nextgendeals1.netlify.app/products.html/#Intent;scheme=https;package=com.android.chrome;end";
+      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href = "https://nextgendeals1.netlify.app/products.html";
+      } else {
+        window.location.href = "https://nextgendeals1.netlify.app/products.html";
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
