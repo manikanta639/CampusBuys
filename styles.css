@@ -138,8 +138,8 @@
     padding-top: 16px;  /* smaller bottom padding on mobile */
   }
       .brand img {
-        width: 85px;
-        height: 85px;
+        width: 75px;
+        height: 75px;
       }
       .brand p {
         font-size: 1rem;
@@ -151,8 +151,8 @@
 
     @media (max-width: 480px) {
       .brand img {
-        width: 75px;
-        height: 75px;
+        width: 65px;
+        height: 65px;
       }
       .brand p {
         font-size: 0.9rem;
@@ -251,5 +251,6 @@
   </script>
 </body>
 </html>
+
 
 
