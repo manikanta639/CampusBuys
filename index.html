@@ -2,233 +2,229 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Campus Buys</title>
-  <link rel="icon" type="image/png" href="EK.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Hub</title>
   <style>
-    /* === General Page Setup === */
     body {
       margin: 0;
-      background: #000;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+      font-family: 'Poppins', sans-serif;
       color: #fff;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin: 20px 0;
+      color: #00e6e6;
+      text-shadow: 0 0 15px #00e6e6;
+      text-align: center;
+      font-size: 2rem;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* always 3 per row */
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px; /* max width for large screens */
+      margin: 20px auto;
+    }
+
+    .brand {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 90vh;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* === CYBER PLASMA BACKGROUND EFFECT === 
-    body::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(from 180deg at 50% 50%, #cc0000, #00cc00, #cc0000);
-      filter: blur(180px);
-      animation: plasmaSpin 15s linear infinite;
-      z-index: 0;
-      opacity: 0.9;
-    }
-
-    @keyframes plasmaSpin {
-      0% { transform: rotate(0deg) scale(1); }
-      50% { transform: rotate(180deg) scale(1); }
-      100% { transform: rotate(360deg) scale(1); }
-    }*/
-
-    /* === Neon Logo Box === */
-    .logo-box {
-      position: relative;
-      display: inline-block;
-      border-radius: 15px;
-      padding: 1px;
-      z-index: 1;
-    }
-
-    /* Top (green) */
-    .logo-box::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: #fbff4d;
-      box-shadow: 0 0 10px #fbff4d, 0 0 20px #fbff4d;
-      border-radius: 15px 15px 0 0;
-    }
-
-    /* Right (red) */
-    .logo-box::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 4px;
-      height: 100%;
-      background: #fbff4d;
-      box-shadow: 0 0 10px #fbff4d, 0 0 20px #fbff4d;
-      border-radius: 0 15px 15px 0;
-    }
-
-    /* Bottom (green) */
-    .bottom-glow {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: #fbff4d;
-      box-shadow: 0 0 10px #fbff4d, 0 0 20px #fbff4d;
-      border-radius: 0 0 15px 15px;
-    }
-
-    /* Left (red) */
-    .left-glow {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: #fbff4d;
-      box-shadow: 0 0 10px #fbff4d, 0 0 20px #fbff4d;
-      border-radius: 15px 0 0 15px;
-    }
-
-    /* === Logo Image === */
-    img.logo {
-      width: 250px;
-      border-radius: 10px;
-      display: block;
-    }
-
-    /* === Title === */
-    h1 {
-      margin: 50px 0 30px 0;
-      font-size: 50px;
-      color: #ffffff;
-      text-shadow: 0 0 8px white;
-      z-index: 1;
-    }
-
-    /* === Button Styling === */
-    button {
-      background: #fbff4d;
-      color: black;
-      border: none;
-      font-size: 20px;
-      font-weight: 550;
-      padding: 15px 30px;
-      border-radius: 8px;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      z-index: 1;
+      padding: 15px;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      text-decoration: none;
     }
 
-    button:hover {
-      background: #00ffe1;
-      box-shadow: 0 0 7px 1px rgba(251,255,77,0.9);
-      transform: scale(1.05);
+    .brand:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.15);
+      animation: glow 1.5s infinite alternate;
     }
 
-    /* === Footer Text === */
-    p {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #ccc;
-      z-index: 1;
+    @keyframes glow {
+      0% { box-shadow: 0 0 3px #00e6e6; }
+      50% { box-shadow: 0 0 20px #00e6e6; }
+      100% { box-shadow: 0 0 3px #00e6e6; }
     }
 
-    /* === Mobile & Tablet Responsive Adjustments === */
-    @media (max-width: 768px) {
-      body {
-        font-size: 14px;
-        padding: 0;
-        height: 90vh;
-        overflow: hidden;
-      }
+    .brand img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      object-fit: contain;
+    }
 
-      .logo-box {
-        padding: 0.5px;
-      }
+    .brand p {
+      font-size: 1rem;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+    }
 
-      img.logo {
-        width: 180px;
-      }
+    .shop-now {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: white;
+      padding: 15px 40px;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 0 20px #0072ff;
+      transition: all 0.3s ease;
+      margin: 25px 0;
+    }
 
-      h1 {
-        font-size: 32px;
-        margin: 20px 0 20px 0;
-      }
+    .shop-now:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #00c6ff;
+    }
 
-      button {
-        font-size: 22px;
-        padding: 12px 25px;
+    /* Laptop/Desktop: largest size */
+    @media (min-width: 1025px) {
+      .brand {
+        padding: 30px;
       }
-
-      body::before {
-        width: 200%;
-        height: 200%;
-        top: -50%;
-        left: -50%;
-        filter: blur(120px);
+      .brand img {
+        width: 100px;
+        height: 100px;
+      }
+      .brand p {
+        font-size: 1.2rem;
       }
     }
 
-    /* Very small mobile devices */
-    @media (max-width: 480px) {
-      body::before {
-        filter: blur(100px);
+    /* Tablet */
+    @media (max-width: 1024px) {
+      .brand {
+        padding: 25px;
+      }
+      .brand img {
+        width: 85px;
+        height: 85px;
+      }
+      .brand p {
+        font-size: 1.1rem;
       }
     }
 
+    /* Mobile */
+    @media (max-width: 600px) {
+      .brand {
+        padding: 15px;
+      }
+      .brand img {
+        width: 70px;
+        height: 70px;
+      }
+      .brand p {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="logo-box">
-    <img src="EK.jpeg" alt="Logo" class="logo">
-    <div class="bottom-glow"></div>
-    <div class="left-glow"></div>
+  <h1>All Your Favorite Stores</h1>
+
+  <!-- Shop Now Button -->
+  <button class="shop-now" onclick="openShop()">Shop Now</button>
+
+  <!-- First Row -->
+  <div class="row">
+    <a class="brand" href="https://amzn.to/your-affiliate" target="_blank">
+      <img src="https://i.pinimg.com/1200x/0a/3e/48/0a3e4885efe5567709c6fcb84f60efd9.jpg" alt="Amazon">
+      <p>Amazon</p>
+    </a>
+    <a class="brand" href="https://www.flipkart.com" target="_blank">
+      <img src="https://i.pinimg.com/736x/22/27/26/222726afe9934f7861715a8087f344a0.jpg" alt="Flipkart">
+      <p>Flipkart</p>
+    </a>
+    <a class="brand" href="https://www.myntra.com" target="_blank">
+      <img src="https://i.pinimg.com/736x/75/7e/9f/757e9f8de60e9f3040f2dfbda529813e.jpg" alt="Myntra">
+      <p>Myntra</p>
+    </a>
   </div>
 
-  <h1>CAMPUS BUYS</h1>
+  <!-- Second Row -->
+  <div class="row">
+    <a class="brand" href="https://www.meesho.com" target="_blank">
+      <img src="https://i.pinimg.com/736x/73/4b/75/734b753bf391e8069a36ff185670e2c6.jpg" alt="Meesho">
+      <p>Meesho</p>
+    </a>
+    <a class="brand" href="https://www.ajio.com" target="_blank">
+      <img src="https://i.pinimg.com/736x/df/b0/d9/dfb0d95efaa0be188f2fc6bc3b609c55.jpg" alt="Ajio">
+      <p>Ajio</p>
+    </a>
+    <a class="brand" href="https://www.shopsy.in" target="_blank">
+      <img src="https://play-lh.googleusercontent.com/uGrNBxGla5F9jv0VDAwGZUleaH3C54eaIDY5MaSiChKxseMIvPxlQ7ivm0OEzo9lxxw=w240-h480-rw" alt="Shopsy">
+      <p>Shopsy</p>
+    </a>
+  </div>
 
-  <button onclick="openShop()">Open Shop</button>
+  <!-- Third Row -->
+  <div class="row">
+    <a class="brand" href="https://www.croma.com" target="_blank">
+      <img src="https://i.pinimg.com/1200x/0f/1f/22/0f1f228244b8789fc09c0a9969ce9780.jpg" alt="Croma">
+      <p>Croma</p>
+    </a>
+    <a class="brand" href="https://www.reliancedigital.in" target="_blank">
+      <img src="https://i.pinimg.com/1200x/39/c1/99/39c199e243173ff0a2daf8f9dc2c89b6.jpg" alt="Reliance Digital">
+      <p>Reliance</p>
+    </a>
+    <div class="brand" onclick="othersClicked()">
+      <img src="https://i.pinimg.com/736x/3d/1e/e9/3d1ee975e59ef6bfc50d86dbdb512c28.jpg" alt="Others">
+      <p>Others</p>
+    </div>
+  </div>
 
   <script>
+    // Shop Now button with deep links
     function openShop() {
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isInstagram = userAgent.includes("Instagram");
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+      const targetURL = "https://campusbuys.netlify.app/products.html";
 
-      if (/android/i.test(userAgent)) {
+      if (isInstagram) {
+        // Instagram in-app browser → open directly
+        window.location.href = targetURL;
+      } else if (isAndroid) {
+        // Android deep link
         window.location.href = "intent://campusbuys.netlify.app/products.html/#Intent;scheme=https;package=com.android.chrome;end";
-      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.location.href = "https://campusbuys.netlify.app/products.html";
+      } else if (isIOS) {
+        // iPhone / iPad deep link
+        window.location.href = targetURL; 
+        setTimeout(() => { window.location.href = targetURL; }, 1000);
       } else {
-        window.location.href = "https://campusbuys.netlify.app/products.html";
+        // Desktop
+        window.location.href = targetURL;
       }
+    }
+
+    // Others button click
+    function othersClicked() {
+      alert("Please message us on Instagram to open Shop Now");
     }
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
