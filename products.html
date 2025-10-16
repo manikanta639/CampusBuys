@@ -1,67 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image" href="CB.jpg">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Buys</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Campus Buys</title>
+<link rel="icon" href="CB.jpg" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
+<header id="site-header" style="display:flex; align-items:center; padding:15px; background:black; color:white;">
+  <img src="CB.jpg" alt="Logo" class="logo" style="border-radius:10px; width:60px; margin-right:10px;" />
+  <h1>Campus Buys</h1>
+</header>
 
-    <!-- Logo + Title -->
-    <header id="site-header">
-        <img src="CB.jpg" alt="Logo" class="logo" style="border-radius: 10px;">
-        <h1>Campus Buys</h1>
-    </header>
+<div class="search-container">
+  <input type="text" id="search" placeholder="Search by name or number..." oninput="filterProducts()" />
+</div>
 
-    <!-- Shop Now Button -->
-    <div>
-        <a href="index2.html" target="_blank">
-            <button class="cta-btn">Shop Now</button>
-        </a>
-    </div>
+<div class="categories">
+  <button onclick="filterByCategory('all')">All</button>
+  <button onclick="filterByCategory('electronics')">Electronics</button>
+  <button onclick="filterByCategory('footwear')">Footwear</button>
+  <button onclick="filterByCategory('clothing')">Clothing</button>
+  <button onclick="filterByCategory('skincare')">Skin Care</button>
+  <button onclick="filterByCategory('grocery')">Grocery</button>
+  <button onclick="filterByCategory('homeappliances')">Home Appliances</button>
+  <button onclick="filterByCategory('Others')">Others</button>
+</div>
 
-    <!-- Sticky Search Bar -->
-    <div class="search-container">
-        <input type="text" id="search" placeholder="Search by name or number..." oninput="filterProducts()">
-    </div>
+<div id="subcategory-container"></div>
+<div id="product-container" class="product-grid"></div>
 
-    <!-- ✅ Categories -->
-    <div class="categories">
-        <button onclick="filterByCategory('all')">All</button>
-        <button onclick="filterByCategory('electronics')">Electronics</button>
-        <button onclick="filterByCategory('footwear')">Footwear</button>
-        <button onclick="filterByCategory('clothing')">Clothing</button>
-        <button onclick="filterByCategory('skincare')">Skin Care</button>
-        <button onclick="filterByCategory('grocery')">Grocery</button>
-        <button onclick="filterByCategory('homeappliances')">Home Appliances</button>
-        <!--<button onclick="filterByCategory('proteins')">Proteins</button> -->
-        <button onclick="filterByCategory('Others')">Others</button>
-        
+<nav class="bottom-taskbar">
+  <a href="index.html"><i class="fa fa-home"></i><span>Home</span></a>
+  <a href="wishlist.html"><i class="fa fa-heart"></i><span>Wishlist</span></a>
+  <a href="cart.html"><i class="fa fa-shopping-cart"></i><span>Cart</span></a>
+  <a href="#"><i class="fa fa-download"></i><span>App</span></a>
+  <a href="menu.html"><i class="fa fa-bars"></i><span>Menu</span></a>
+</nav>
 
-        
-
-
-    </div>
-
-    <!-- Subcategories will appear here dynamically -->
-    <div id="subcategory-container"></div>
-
-    <!-- Products -->
-    <div id="product-container" class="product-grid"></div>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
