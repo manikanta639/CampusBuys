@@ -6,13 +6,13 @@
   <title>Campus Buys</title>
 
   <!-- PWA manifest + theme color -->
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#0f0f1a" />
 
-    <!-- Main Logo / Favicon -->
-  <link rel="icon" type="image/jpeg" href="CB.jpg">
-  <link rel="apple-touch-icon" href="CB.jpg">
-  <link rel="shortcut icon" href="CB.jpg">
+  <!-- Main Logo / Favicon -->
+  <link rel="icon" type="image/jpeg" href="CB.jpg" />
+  <link rel="apple-touch-icon" href="CB.jpg" />
+  <link rel="shortcut icon" href="CB.jpg" />
 
   <style>
     body {
@@ -27,13 +27,13 @@
       font-family: 'Poppins', sans-serif;
       color: #fff;
       box-sizing: border-box;
-      touch-action: manipulation; /* Prevents double-tap zoom on mobile */
+      touch-action: manipulation;
     }
 
     h1 {
       margin: 20px 0;
-      color: #00e6e6;
-      text-shadow: 0 0 15px #00e6e6;
+      color: #fbff4d; /* bright yellow */
+      text-shadow: 0 0 15px #fbff4d;
       text-align: center;
       font-size: 2rem;
     }
@@ -65,23 +65,23 @@
 
     .brand:hover {
       transform: translateY(-8px) scale(1.05);
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+      box-shadow: 0 0 25px #fbff4d;
       background: rgba(255, 255, 255, 0.15);
       animation: glow 1.5s infinite alternate;
     }
 
     @keyframes glow {
-      0% { box-shadow: 0 0 3px #00e6e6; }
-      50% { box-shadow: 0 0 20px #00e6e6; }
-      100% { box-shadow: 0 0 3px #00e6e6; }
+      0% { box-shadow: 0 0 3px #fbff4d; }
+      50% { box-shadow: 0 0 20px #fbff4d; }
+      100% { box-shadow: 0 0 3px #fbff4d; }
     }
 
     .brand img {
       width: 100px;
       height: 100px;
       margin-bottom: 10px;
-      border-radius: 10px;
-      object-fit: contain;
+      border-radius: 8px; /* apply border radius here */
+      object-fit: cover; /* cover to maintain aspect ratio and fill box */
     }
 
     .brand p {
@@ -91,23 +91,24 @@
       margin: 0;
     }
 
-    .shop-now {
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      color: white;
-      padding: 15px 40px;
-      font-size: 1.4rem;
-      border: none;
-      border-radius: 40px;
-      cursor: pointer;
-      box-shadow: 0 0 20px #0072ff;
-      transition: all 0.3s ease;
-      margin: 25px 0;
-    }
+.shop-now {
+  background: linear-gradient(90deg, #fbff4d, #e0e642);
+  color: black;
+  padding: 15px 40px;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 0 8px #e0e642;  /* reduced glow from 20px to 8px */
+  transition: all 0.3s ease;
+  margin: 25px 0;
+}
 
-    .shop-now:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #00c6ff;
-    }
+.shop-now:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px #fbff4d;  /* keep hover glow intense */
+}
+
 
     @media (max-width: 1440px) {
       .brand img { width: 90px; height: 90px; }
@@ -129,7 +130,7 @@
     }
 
     @media (max-width: 480px) {
-      .brand img { width: 70px; height: 75px; }
+      .brand img { width: 70px; height: 70px; }
       .brand p { font-size: 1rem; }
       .brand { padding: 15px; }
       .row { gap: 10px; }
@@ -137,7 +138,7 @@
   </style>
 </head>
 <body>
-  <h1>All Your Favorite <br>Stores</h1>
+  <h1>All Your Favorite <br />Stores</h1>
 
   <!-- Shop Now Button -->
   <button class="shop-now" onclick="openShop()">Shop Now</button>
@@ -173,7 +174,7 @@
       <p>Shopsy</p>
     </a>
   </div>
-  
+
   <!-- Third Row -->
   <div class="row">
     <a class="brand" href="https://www.croma.com" target="_blank" rel="noopener noreferrer">
@@ -233,19 +234,14 @@
       alert("Please message us on Instagram to open Shop Now");
     }
 
-    // Register service worker
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("service-worker.js")
+        navigator.serviceWorker
+          .register("service-worker.js")
           .then(() => console.log("Service Worker registered successfully"))
-          .catch(err => console.log("Service Worker registration failed:", err));
+          .catch((err) => console.log("Service Worker registration failed:", err));
       });
     }
   </script>
 </body>
 </html>
-
-
-
-
-
