@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Menu - Campus Buys</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+  /* Reset box sizing and ensure scroll */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    height: auto;  /* Allow height to expand */
+    overflow-y: auto; /* Allow vertical scrolling */
+    margin: 0;
+    padding: 20px;
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+
+  ul.menu-buttons {
+    list-style: none;
+    padding: 0;
+    margin: 40px auto 20px;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  ul.menu-buttons li {
+    background: #222;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    flex: 1;
+    text-align: center;
+    user-select: none;
+  }
+  ul.menu-buttons li:hover {
+    background: #fbff4d;
+    color: black;
+  }
+  #insta-contact-btn {
+    margin-top: 20px;
+    padding: 14px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    background: #fbff4d;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: none;
+    transition: background 0.3s ease;
+  }
+  #insta-contact-btn:hover {
+    background: #e0e642;
+  }
+  #about-content {
+    margin-top: 20px;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+    color: #fbff4d;
+    display: none;
+    text-align: justify;
+  }
+  /* Bottom Taskbar styling */
+  .bottom-taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55px;
+    background: #111;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 2px solid #fbff4d;
+    z-index: 9999;
+  }
+  .bottom-taskbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color 0.3s ease;
+  }
+  .bottom-taskbar a:hover,
+  .bottom-taskbar a.active {
+    color: #fbff4d;
+  }
+  .bottom-taskbar i {
+    font-size: 20px;
+    margin-bottom: 3px;
+  }
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    ul.menu-buttons {
+      max-width: 100%;
+      padding: 0 15px;
+      gap: 12px;
+    }
+    ul.menu-buttons li {
+      font-size: 18px;
+      padding: 12px 12px;
+      flex: unset;
+      min-width: 120px;
+    }
+    #insta-contact-btn {
+      font-size: 16px;
+      padding: 12px 25px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h2>Menu</h2>
+<ul class="menu-buttons">
+  <li id="contact-menu">Contact</li>
+  <li id="about-menu">About Us</li>
+</ul>
+
+<button id="insta-contact-btn">Contact through Instagram</button>
+
+<div id="about-content">
+  <h3 style="text-align: center;">Welcome to Campus Buys!</h3>
+  <p>
+    Campus Buys is your trusted place to discover the best deals and offers on a wide range of products from daily essentials to the latest gadgets and more. We help you find quality products at great prices through our affiliate links from trusted online stores.<br><br>
+
+    👉 Please buy through this website!<br><br>
+    If any product is not available here, simply go to the main page and make your purchase there.<br><br> This small step helps us grow and keeps Campus Buys running at no extra cost to you!
+
+    Your support truly means a lot.<br>
+    ❤️Our goal this month is to complete 450 orders, and with your help, we can make it happen!
+    So go ahead — browse, shop, and save with Campus Buys.<br><br>
+    Together, let’s make smart shopping simple and rewarding! Thank you for supporting Campus Buys! <br> <h3 style="text-align: right;">By Manikanta...</h3><br>
+  </p>
+</div>
+
+<nav class="bottom-taskbar">
+  <a href="index.html"><i class="fa fa-home"></i><span>Home</span></a>
+  <a href="wishlist.html"><i class="fa fa-heart"></i><span>Wishlist</span></a>
+  <a href="cart.html"><i class="fa fa-shopping-cart"></i><span>Cart</span></a>
+  <a href="#"><i class="fa fa-download"></i><span>App</span></a>
+  <a href="menu.html" class="active"><i class="fa fa-bars"></i><span>Menu</span></a>
+</nav>
+
+<script>
+  const instagramUsername = "yourInstagramUsername";  // Replace with your Instagram username
+
+  const contactMenu = document.getElementById('contact-menu');
+  const aboutMenu = document.getElementById('about-menu');
+  const instaBtn = document.getElementById('insta-contact-btn');
+  const aboutContent = document.getElementById('about-content');
+
+  contactMenu.addEventListener('click', () => {
+    instaBtn.style.display = 'inline-block';
+    aboutContent.style.display = 'none';
+  });
+
+  instaBtn.addEventListener('click', () => {
+    window.open(`https://instagram.com/${instagramUsername}`, '_blank');
+  });
+
+  aboutMenu.addEventListener('click', () => {
+    aboutContent.style.display = 'block';
+    instaBtn.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>

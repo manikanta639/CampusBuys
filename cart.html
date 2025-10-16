@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cart - Campus Buys</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+<header id="site-header" style="display:flex; align-items:center; padding:15px; background:black; color:white;">
+  <h2>Shopping Cart</h2>
+</header>
+
+<div id="cart-products"></div>
+
+<nav class="bottom-taskbar">
+  <a href="index.html"><i class="fa fa-home"></i><span>Home</span></a>
+  <a href="wishlist.html"><i class="fa fa-heart"></i><span>Wishlist</span></a>
+  <a href="cart.html"><i class="fa fa-shopping-cart"></i><span>Cart</span></a>
+  <a href="#"><i class="fa fa-download"></i><span>App</span></a>
+  <a href="menu.html"><i class="fa fa-bars"></i><span>Menu</span></a>
+</nav>
+
+<script>
+function renderCart() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const container = document.getElementById("cart-products");
+  if(cart.length === 0) {
+    container.innerHTML = "<p style='text-align:center; padding:20px;'>Your cart is empty.</p>";
+  } else {
+    container.innerHTML = "";
+    cart.forEach((p, index) => {
+      container.innerHTML += `
+      <div class="card">
+        <img src="${p.image}" alt="${p.name}" onclick="window.open('${p.link}', '_blank')" />
+        <p onclick="window.open('${p.link}', '_blank')">${p.name}</p>
+        <div class="button-row">
+          <a href="${p.link}" target="_blank" class="buy-btn">Buy Now</a>
+          <button class="remove-from-cart-btn" onclick="removeFromCart(${index})">Remove</button>
+        </div>
+      </div>`;
+    });
+  }
+}
+function removeFromCart(index) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+function updateActiveNavLink() {
+  const links = document.querySelectorAll(".bottom-taskbar a");
+  const currentFile = window.location.pathname.split("/").pop();
+  links.forEach(link => {
+    if(link.getAttribute("href") === currentFile) {
+      link.classList.add("active");
+    }
+  });
+}
+window.onload = () => {
+  renderCart();
+  updateActiveNavLink();
+};
+</script>
+</body>
+</html>
