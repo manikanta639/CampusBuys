@@ -1,7 +1,7 @@
 self.addEventListener("install", event => {
   console.log("Service Worker installed");
   event.waitUntil(
-    caches.open("shophub-cache").then(cache => {
+    caches.open("campus buys-cache").then(cache => {
       return cache.addAll([
         "./",
         "./index.html",
@@ -20,3 +20,4 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
