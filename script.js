@@ -452,6 +452,30 @@ const products = [
 
 
 
+// Animation Control Functions inserted in middle
+function disableAnimations() {
+  document.body.classList.add('no-animation');
+}
+
+function enableAnimations() {
+  document.body.classList.remove('no-animation');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const path = window.location.pathname;
+  if (
+    path.includes('cart.html') ||
+    path.includes('wishlist.html') ||
+    path.includes('menu.html') ||
+    path.includes('index.html')
+  ) {
+    disableAnimations();
+  } else {
+    enableAnimations();
+  }
+});
+
+// Animation helper for page transitions
 function animatePageTransition(callback) {
   document.body.style.opacity = 0;
   setTimeout(() => {
@@ -468,6 +492,7 @@ function toggleHeaderVisibility(show) {
 function renderProducts(list, hideHeader = false) {
   toggleHeaderVisibility(!hideHeader);
   const container = document.getElementById("product-container");
+  if(!container) return;
   container.innerHTML = "";
   list.forEach(product => {
     const card = document.createElement("div");
@@ -559,19 +584,16 @@ function updateActiveNavLink() {
   });
 }
 
-// Wishlist specific functions for rendering/removing on wishlist.html
-
+// Wishlist page functions
 function renderWishlist() {
   const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
   const container = document.getElementById("wishlist-products");
   if (!container) return;
-
   container.innerHTML = '';
   if (wishlist.length === 0) {
     container.innerHTML = "<p style='text-align:center; padding:20px;'>No items in wishlist.</p>";
     return;
   }
-
   wishlist.forEach((p, index) => {
     if (p && p.name && p.image && p.link) {
       container.innerHTML += `
@@ -593,19 +615,16 @@ function removeFromWishlist(index) {
   }
 }
 
-// Cart specific functions for rendering/removing on cart.html
-
+// Cart page functions
 function renderCart() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   const container = document.getElementById("cart-products");
   if (!container) return;
-
   container.innerHTML = '';
   if (cart.length === 0) {
     container.innerHTML = "<p style='text-align:center; padding:20px;'>Your cart is empty.</p>";
     return;
   }
-
   cart.forEach((p, index) => {
     if (p && p.name && p.image && p.link) {
       container.innerHTML += `
@@ -631,17 +650,13 @@ function removeFromCart(index) {
   }
 }
 
-
 window.onload = () => {
-  // Render home page product list if on index
   if(document.getElementById("product-container")) {
     renderProducts(products);
   }
-  // Render wishlist if on wishlist page
   if(document.getElementById("wishlist-products")) {
     renderWishlist();
   }
-  // Render cart if on cart page
   if(document.getElementById("cart-products")) {
     renderCart();
   }
