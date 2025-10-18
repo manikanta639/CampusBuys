@@ -452,30 +452,60 @@ const products = [
 
 
 
-// Animation Control Functions inserted in middle
+// ======================
+// CLEANUP FUNCTION
+// ======================
+function cleanLocalStorage() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  // Keep only valid items
+  cart = cart.filter(item => products.some(p => p.name === item.name));
+  wishlist = wishlist.filter(item => products.some(p => p.name === item.name));
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+}
+
+// ======================
+// POPUP MESSAGE FUNCTION
+// ======================
+function showPopupMessage(message) {
+  const msg = document.createElement("div");
+  msg.textContent = message;
+  msg.style.position = "fixed";
+  msg.style.bottom = "20px";
+  msg.style.left = "50%";
+  msg.style.transform = "translateX(-50%)";
+  msg.style.background = "rgba(0,0,0,0.8)";
+  msg.style.color = "white";
+  msg.style.padding = "10px 20px";
+  msg.style.borderRadius = "8px";
+  msg.style.zIndex = "9999";
+  msg.style.fontSize = "14px";
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 2000);
+}
+
+// ======================
+// ANIMATION & HELPERS
+// ======================
 function disableAnimations() {
-  document.body.classList.add('no-animation');
+  document.body.classList.add("no-animation");
 }
-
 function enableAnimations() {
-  document.body.classList.remove('no-animation');
+  document.body.classList.remove("no-animation");
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname;
-  if (
-    path.includes('cart.html') ||
-    path.includes('wishlist.html') ||
-    path.includes('menu.html') ||
-    path.includes('index.html')
-  ) {
+  if (path.includes("cart.html") || path.includes("wishlist.html") || path.includes("menu.html") || path.includes("index.html")) {
     disableAnimations();
   } else {
     enableAnimations();
   }
 });
 
-// Animation helper for page transitions
 function animatePageTransition(callback) {
   document.body.style.opacity = 0;
   setTimeout(() => {
@@ -486,14 +516,18 @@ function animatePageTransition(callback) {
 
 function toggleHeaderVisibility(show) {
   const header = document.getElementById("site-header");
-  if(header) header.style.display = show ? "flex" : "none";
+  if (header) header.style.display = show ? "flex" : "none";
 }
 
+// ======================
+// RENDER PRODUCTS
+// ======================
 function renderProducts(list, hideHeader = false) {
   toggleHeaderVisibility(!hideHeader);
   const container = document.getElementById("product-container");
-  if(!container) return;
+  if (!container) return;
   container.innerHTML = "";
+
   list.forEach(product => {
     const card = document.createElement("div");
     card.className = "card";
@@ -501,7 +535,7 @@ function renderProducts(list, hideHeader = false) {
     card.innerHTML = `
       <i class="fa fa-heart wishlist-icon ${isInWishlist(product) ? "active" : ""}"></i>
       ${product.number ? `<span class="product-number">${product.number}</span>` : ""}
-      <img src="${product.image}" class="product-image" />
+      <img src="${product.image}" class="product-image" alt="${product.name}" />
       <p>${product.name}</p>
       <div class="button-row">
         <button class="buy-btn">Buy Now</button>
@@ -517,14 +551,24 @@ function renderProducts(list, hideHeader = false) {
     card.querySelector(".buy-btn").addEventListener("click", () => {
       window.open(product.link, "_blank");
     });
+
     card.querySelector(".cart-btn").addEventListener("click", () => {
       addToCart(product);
+    });
+
+    const img = card.querySelector(".product-image");
+    img.style.cursor = "pointer";
+    img.addEventListener("click", () => {
+      window.open(product.link, "_blank");
     });
 
     container.appendChild(card);
   });
 }
 
+// ======================
+// WISHLIST FUNCTIONS
+// ======================
 function isInWishlist(product) {
   const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
   return wishlist.find(p => p.name === product.name);
@@ -535,21 +579,43 @@ function toggleWishlistItem(product) {
   const exists = wishlist.find(p => p.name === product.name);
   if (exists) {
     wishlist = wishlist.filter(p => p.name !== product.name);
+    showPopupMessage("Removed from Wishlist");
   } else {
     wishlist.push(product);
+    showPopupMessage("Added to Wishlist");
   }
   localStorage.setItem("wishlist", JSON.stringify(wishlist));
 }
 
+// ======================
+// CART FUNCTIONS
+// ======================
 function addToCart(product) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   if (!cart.find(p => p.name === product.name)) {
     cart.push(product);
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCartCount();
+    showPopupMessage("Added to Cart");
+  } else {
+    showPopupMessage("Already in Cart");
   }
 }
 
+function removeFromCart(index) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (index > -1 && index < cart.length) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+    updateCartCount();
+    showPopupMessage("Removed from Cart");
+  }
+}
+
+// ======================
+// FILTER FUNCTIONS
+// ======================
 function filterByCategory(cat) {
   const filtered = cat === "all" ? products : products.filter(p => p.category === cat);
   animatePageTransition(() => renderProducts(filtered));
@@ -561,11 +627,14 @@ function filterProducts() {
   animatePageTransition(() => renderProducts(filtered));
 }
 
+// ======================
+// CART COUNT & NAV
+// ======================
 function updateCartCount() {
   const cartCountSpan = document.getElementById("cart-count");
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  if(cartCountSpan) {
-    if(cart.length > 0) {
+  if (cartCountSpan) {
+    if (cart.length > 0) {
       cartCountSpan.style.display = "inline-block";
       cartCountSpan.textContent = cart.length;
     } else {
@@ -578,18 +647,20 @@ function updateActiveNavLink() {
   const links = document.querySelectorAll(".bottom-taskbar a");
   const currentFile = window.location.pathname.split("/").pop();
   links.forEach(link => {
-    if(link.getAttribute("href") === currentFile || (currentFile === "" && link.getAttribute("href") === "index.html")) {
+    if (link.getAttribute("href") === currentFile || (currentFile === "" && link.getAttribute("href") === "index.html")) {
       link.classList.add("active");
     }
   });
 }
 
-// Wishlist page functions
+// ======================
+// WISHLIST PAGE
+// ======================
 function renderWishlist() {
   const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
   const container = document.getElementById("wishlist-products");
   if (!container) return;
-  container.innerHTML = '';
+  container.innerHTML = "";
   if (wishlist.length === 0) {
     container.innerHTML = "<p style='text-align:center; padding:20px;'>No items in wishlist.</p>";
     return;
@@ -612,15 +683,18 @@ function removeFromWishlist(index) {
     wishlist.splice(index, 1);
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
     renderWishlist();
+    showPopupMessage("Removed from Wishlist");
   }
 }
 
-// Cart page functions
+// ======================
+// CART PAGE
+// ======================
 function renderCart() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   const container = document.getElementById("cart-products");
   if (!container) return;
-  container.innerHTML = '';
+  container.innerHTML = "";
   if (cart.length === 0) {
     container.innerHTML = "<p style='text-align:center; padding:20px;'>Your cart is empty.</p>";
     return;
@@ -640,26 +714,15 @@ function renderCart() {
   });
 }
 
-function removeFromCart(index) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  if(index > -1 && index < cart.length) {
-    cart.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    renderCart();
-    updateCartCount();
-  }
-}
-
+// ======================
+// ON PAGE LOAD
+// ======================
 window.onload = () => {
-  if(document.getElementById("product-container")) {
-    renderProducts(products);
-  }
-  if(document.getElementById("wishlist-products")) {
-    renderWishlist();
-  }
-  if(document.getElementById("cart-products")) {
-    renderCart();
-  }
+  cleanLocalStorage(); // 🧹 remove deleted products
+  if (document.getElementById("product-container")) renderProducts(products);
+  if (document.getElementById("wishlist-products")) renderWishlist();
+  if (document.getElementById("cart-products")) renderCart();
   updateCartCount();
   updateActiveNavLink();
 };
+
